@@ -27,7 +27,7 @@ parallel --will-cite \
 
 overall_exit=$?
 
-echo "Linters run summary" >> $GITHUB_STEP_SUMMARY
+echo "# Code Linters Summary" >> $GITHUB_STEP_SUMMARY
 echo " | Linter | Result | " >> $GITHUB_STEP_SUMMARY
 echo " | ------ | ------ | " >> $GITHUB_STEP_SUMMARY
 
@@ -35,8 +35,8 @@ tail -n +2 "$results_dir/joblog" | while IFS='	' read -r seq host starttime runt
     linter=$(basename -s .sh "$command")
     target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
     context="Linter status: ${linter}"
-    commit_status="success"
-    description="No linting errors"
+    commit_status='success'
+    description='No linting errors'
     summary_result=':white_check_mark:'
 
     if test "$exitval" != '0'; then
@@ -48,7 +48,7 @@ tail -n +2 "$results_dir/joblog" | while IFS='	' read -r seq host starttime runt
     GH_TOKEN="${GITHUB_TOKEN}" gh api \
        --silent \
        --method POST \
-       -H "Accept: application/vnd.github+json" \
+       -H 'Accept: application/vnd.github+json' \
        /repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA} \
        -f "state=${commit_status}" \
        -f "target_url=${target_url}" \
@@ -58,11 +58,24 @@ tail -n +2 "$results_dir/joblog" | while IFS='	' read -r seq host starttime runt
     echo " | $linter | $summary_result | " >> $GITHUB_STEP_SUMMARY
 done
 
-for linter in $linters; do
+tail -n +2 "$results_dir/joblog" | while IFS='	' read -r seq host starttime runtime send recv exitval signal command; do
+    linter=$(basename -s .sh "$command")
     output_file="$(find $results_dir -type d -name "$linter")/stdout"
+
     echo "::group::$linter"
     cat $output_file
     echo "::endgroup::"
+
+    if test "$exitval" = '0'; then
+        continue
+    fi
+
+    cat >> $GITHUB_STEP_SUMMARY <<EOF
+<details>
+  <summary>${linter}</summary>
+  $(cat "$output_file")
+</details>
+EOF
 done
 
 exit $overall_exit
