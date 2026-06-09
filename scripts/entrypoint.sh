@@ -19,7 +19,7 @@ echo " | Linter | Result | " >> $GITHUB_STEP_SUMMARY
 echo " | ------ | ------ | " >> $GITHUB_STEP_SUMMARY
 
 tail -n +2 "$results_dir/joblog" | while IFS='	' read -r seq host starttime runtime send recv exitval signal command; do
-    linter=$(basename "$command" -s .sh)
+    linter=$(basename -s .sh "$command")
     target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
     context="Linter status: ${linter}"
     commit_status="success"
@@ -32,7 +32,7 @@ tail -n +2 "$results_dir/joblog" | while IFS='	' read -r seq host starttime runt
         summary_result=':no_entry_sign:'
     fi
 
-    gh api \
+    GH_TOKEN="${GITHUB_TOKEN}" gh api \
        --method POST \
        -H "Accept: application/vnd.github+json" \
        /repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA} \
