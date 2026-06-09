@@ -70,12 +70,14 @@ tail -n +2 "$results_dir/joblog" | while IFS='	' read -r seq host starttime runt
         continue
     fi
 
-    echo "<details>" >> $GITHUB_STEP_SUMMARY
+    echo '<details>' >> $GITHUB_STEP_SUMMARY
     echo "<summary>${linter}</summary>" >> $GITHUB_STEP_SUMMARY
-    echo "\`\`\`text" >> $GITHUB_STEP_SUMMARY
+    echo '' >> $GITHUB_STEP_SUMMARY
+    echo '```' >> $GITHUB_STEP_SUMMARY
     cat "$output_file" >> $GITHUB_STEP_SUMMARY
-    echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-    echo "</details>" >> $GITHUB_STEP_SUMMARY
+    echo '```' >> $GITHUB_STEP_SUMMARY
+    echo '' >> $GITHUB_STEP_SUMMARY
+    echo '</details>' >> $GITHUB_STEP_SUMMARY
 done
 
 exit $parallel_exit
