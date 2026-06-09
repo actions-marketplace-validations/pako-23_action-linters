@@ -73,7 +73,9 @@ tail -n +2 "$results_dir/joblog" | while IFS='	' read -r seq host starttime runt
     cat >> $GITHUB_STEP_SUMMARY <<EOF
 <details>
   <summary>${linter}</summary>
+```text
   $(cat "$output_file")
+```
 </details>
 EOF
 done
