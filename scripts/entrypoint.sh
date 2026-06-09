@@ -3,7 +3,7 @@
 results_dir=/tmp/results
 all_linters=$(find /usr/local/bin/linters/ -name '*.sh' -exec basename -s .sh {} \;)
 
-linters=
+linters=''
 for linter in $all_linters; do
     env_var=$(echo "$linter" | tr '[:lower:]-' '[:upper:]_')
     eval "enabled=\"\${${env_var}:-false}\""
