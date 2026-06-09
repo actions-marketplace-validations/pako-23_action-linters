@@ -1,5 +1,9 @@
 # Code Linters
 
+[![Latest Release](https://img.shields.io/github/v/release/pako-23/action-linters?sort=semver)](https://github.com/pako-23/action-linters/releases/latest)
+![Linter](https://github.com/actions/action-linters/actions/workflows/linter.yml/badge.svg)
+[![License](https://img.shields.io/github/license/pako-23/action-linters)](LICENSE)
+
 A GitHub Action that runs a set of linters on your codebase. The
 results will be reported as commit statuses and as job summary.
 
@@ -48,3 +52,7 @@ the **`checks: write`** permission to create create commit statuses
 
 Set a variable to `true` to enable the corresponding linter. Omitted
 or unset variables disable the linter.
+
+## License
+
+[MIT](LICENSE)
