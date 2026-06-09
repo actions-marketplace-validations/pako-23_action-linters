@@ -1,5 +1,7 @@
 FROM alpine:3.20
 
+LABEL org.opencontainers.image.description="A collection of linters to run within a GitHub action"
+
 RUN apk add --no-cache \
     'github-cli~=2.47' \
     parallel=20240422-r0 \
