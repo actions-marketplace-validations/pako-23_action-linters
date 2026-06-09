@@ -9,4 +9,4 @@ elif test -f '.hadolint.yml'; then
     CONFIG='-c .hadolint.yml'
 fi
 
-find . -name 'Dockerfile*' -exec hadolint $CONFIG {} + 2>&1
+find . -name 'Dockerfile*' -exec hadolint --no-color $CONFIG {} + 2>&1
