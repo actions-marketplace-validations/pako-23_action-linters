@@ -1,5 +1,5 @@
 ---
-name: Code Linters
+name: Lint Codebase
 description: A collection of linters and code analyzers to validate code.
 author: pako-23 <pasqualepolverino98@gmail.com>
 
