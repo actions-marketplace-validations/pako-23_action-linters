@@ -25,7 +25,7 @@ parallel --will-cite \
          --results "$results_dir" \
          /usr/local/bin/linters/{}.sh ::: $linters
 
-overall_exit=$?
+parallel_exit=$?
 
 echo "# Code Linters Summary" >> $GITHUB_STEP_SUMMARY
 echo " | Linter | Result | " >> $GITHUB_STEP_SUMMARY
@@ -80,4 +80,4 @@ tail -n +2 "$results_dir/joblog" | while IFS='	' read -r seq host starttime runt
 EOF
 done
 
-exit $overall_exit
+exit $parallel_exit

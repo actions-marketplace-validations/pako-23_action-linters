@@ -40,8 +40,10 @@ the **`checks: write`** permission to create create commit statuses
 
 | Environment Variable | Linter       | Description                       |
 |----------------------|--------------|-----------------------------------|
+| `ACTIONLINT`         | actionlint   | Lints GitHub Actions Workflows    |
 | `ANSIBLE_LINT`       | ansible-lint | Lints Ansible playbooks and roles |
 | `HADOLINT`           | hadolint     | Lints Dockerfiles                 |
+| `MARKDOWNLINT`       | markdownlint | Lints Markdown files              |
 | `YAMLLINT`           | yamllint     | Lints YAML files                  |
 
 Set a variable to `true` to enable the corresponding linter. Omitted
