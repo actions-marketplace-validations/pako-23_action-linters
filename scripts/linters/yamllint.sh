@@ -7,4 +7,4 @@ if test -f '.yamllint'; then
     CONFIG='-c .yamllint'
 fi
 
-exec yamllint $CONFIG . 2>&1
+exec yamllint $CONFIG -f standard . 2>&1
