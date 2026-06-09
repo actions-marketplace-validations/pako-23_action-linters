@@ -19,4 +19,4 @@ RUN apk add --no-cache \
 COPY scripts/linters/ /usr/local/bin/linters/
 COPY scripts/entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["/bin/sh"]
+ENTRYPOINT ["/entrypoint.sh"]
