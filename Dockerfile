@@ -1,4 +1,4 @@
-FROM alpine:3.20
+FROM alpine:3.24
 
 LABEL org.opencontainers.image.description="A collection of linters to run within a GitHub action"
 
