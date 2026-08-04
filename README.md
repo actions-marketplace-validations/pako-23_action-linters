@@ -19,14 +19,15 @@ on:
     branches: [main]
 
 permissions:
+  contents: read
   statuses: write
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: pako-23/action-linters@v0.0.1
+      - uses: actions/checkout@v7
+      - uses: pako-23/action-linters@v0.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HADOLINT: true
