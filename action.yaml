@@ -9,4 +9,4 @@ branding:
 
 runs:
   using: docker
-  image: docker://ghcr.io/pako-23/action-linters:v0.0.1
+  image: docker://ghcr.io/pako-23/action-linters:v0.0.2

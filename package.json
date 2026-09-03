@@ -1,0 +1,8 @@
+{
+  "name": "action-linters",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "markdownlint-cli": "0.48.0"
+  }
+}
